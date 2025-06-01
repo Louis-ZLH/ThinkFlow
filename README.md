@@ -1,4 +1,4 @@
-
+![image](https://github.com/user-attachments/assets/dd551385-81a7-464e-8e65-74d27e755d84)![image](https://github.com/user-attachments/assets/08b7b268-bbac-494f-a151-7656fbe0b16d)
 # 🧠 ThinkFlow
 
 一个模仿 ChatGPT 的 AI 聊天平台，用户可注册账号、与 AI 进行自然语言对话，支持 Markdown 格式、代码高亮与流式响应。项目采用前后端分离架构，部署于云平台，个人全栈新手项目。
@@ -45,13 +45,13 @@
 ## 📂 项目结构（后端示意）
 
 ```
-ThinkFlow/
+server
 ├── controllers/         # 路由逻辑（如登录、消息处理）
 ├── routes/              # 接口定义
-├── middleware/          # JWT 验证与错误处理
-├── db/                  # 数据库连接与操作封装
+├── middleWare/          # JWT 验证与错误处理
+├── db.js                  # 数据库连接与操作封装
 ├── utils/               # 工具函数（如验证码生成）
-├── server.js            # 后端主入口文件
+├── index.js            # 后端主入口文件
 ```
 
 ---
@@ -83,12 +83,15 @@ node server.js
 ### 配置 `.env` 文件如下：
 
 ```env
-PORT=5000
-OPENAI_API_KEY=your_openai_key
-DATABASE_URL=postgresql://username:password@host:port/database
-JWT_SECRET=your_jwt_secret
-EMAIL_USER=your_email@example.com
-EMAIL_PASS=your_email_password
+PG_USER=
+PG_HOST=
+PG_DATABASE=
+PG_PASSWORD=
+PG_PORT=
+JWT_SECRET=
+API_POST_KEY=
+RESEND_API_KEY=
+DEEPSEEK_KEY= 
 ```
 
 ---
@@ -96,6 +99,9 @@ EMAIL_PASS=your_email_password
 ## 📸 项目截图
 
 > _可在此添加首页界面、聊天页面、注册登录页面等关键功能截图_
+>
+![image](https://github.com/user-attachments/assets/f6f5d55c-dcca-4354-aba5-6ada77991ce9)
+![image](https://github.com/user-attachments/assets/f178241a-98f1-454b-9074-82a0ad604383)
 
 ---
 

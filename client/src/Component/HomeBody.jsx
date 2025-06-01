@@ -22,7 +22,11 @@ function HomeBody(){
             <ThemeProvider theme={theme}>
             <Button variant="contained" color="ochre" size="large"
               onClick = {()=>{
-                navigate('/chat');
+                  const token = localStorage.getItem('token');
+                  if (!token) {
+                  navigate('/sign-in');
+                  return;}
+                  navigate('/chat');
               }}
             >Try It</Button>
             </ThemeProvider>

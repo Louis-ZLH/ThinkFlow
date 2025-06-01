@@ -56,6 +56,7 @@ print("Hello, World!")  # � 快速开始
         behavior: "smooth",
         });
     }
+
     //判断是否滚动和滚动是否到达底部
     useEffect(() => {
     const container = containerRef.current;
@@ -63,7 +64,7 @@ print("Hello, World!")  # � 快速开始
 
     const handleScroll = () => {
         const isBottom =
-        container.scrollHeight - container.scrollTop <= container.clientHeight + 5;
+        container.scrollHeight - container.scrollTop <= container.clientHeight + 2;
         setIsAutoScroll(isBottom);
     };
 
@@ -74,7 +75,7 @@ print("Hello, World!")  # � 快速开始
     //如果在底部，并且消息更新了，那就开始自动滚动
     useEffect(() => {
     if (isAutoScroll && containerRef.current) {
-        containerRef.current.scrollTop = containerRef.current.scrollHeight-containerRef.current.clientHeight-4.5;
+        containerRef.current.scrollTop = containerRef.current.scrollHeight-containerRef.current.clientHeight;
     }
     }, [messages]);
 

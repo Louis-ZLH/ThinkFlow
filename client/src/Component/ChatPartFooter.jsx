@@ -134,7 +134,6 @@ export function ChatFooter(props) {
             if(!props.isResponding)
             {
                 setQuestion('');
-                props.smoothToBottom();
                 await props.handleSend(message,false,id);
                 const textarea = localTextareaRef.current;
                 if (!textarea) return;

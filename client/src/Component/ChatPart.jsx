@@ -50,28 +50,6 @@ print("Hello, World!")  # � 快速开始
     const containerRef = useRef(null);
     const [isAutoScroll, setIsAutoScroll] = useState(true);
 
-    function smoothToBottom() {
-        containerRef.current.scrollTo({
-        top: containerRef.current.scrollHeight,
-        behavior: "smooth",
-        });
-    }
-
-    //判断是否滚动和滚动是否到达底部
-    useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-        const isBottom =
-        container.scrollHeight - container.scrollTop <= container.clientHeight + 2;
-        setIsAutoScroll(isBottom);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-    }, []);
-
     //如果在底部，并且消息更新了，那就开始自动滚动
     useEffect(() => {
     if (isAutoScroll && containerRef.current) {
@@ -81,7 +59,7 @@ print("Hello, World!")  # � 快速开始
 
     //new-chat直接返回，从new-chat加载过来的也返回，只有点按钮切换或者刷新进来的需要拉取右侧聊天框消息
     useEffect(()=>{
-        if(!id) {console.log(1); return;}
+        if(!id) {return;}
         if(isNewChat) {navigate(location.pathname, { replace: true }); return; }
         DeleteMessage();
         const token = localStorage.getItem('token');
@@ -195,6 +173,21 @@ print("Hello, World!")  # � 快速开始
         setIsResponding(false);
     }
 
+    //判断是否滚动和滚动是否到达底部
+    useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+        const isBottom =
+        container.scrollHeight - container.scrollTop <= container.clientHeight+10;
+        setIsAutoScroll(isBottom);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+    }, [id]);
+
     const handleCancel = () => {
         if (abortControllerRef.current) {
         abortControllerRef.current.abort();
@@ -222,7 +215,6 @@ print("Hello, World!")  # � 快速开始
   <ChatFooter isFixed={true} pushMethod = {pushNewMessage} email={props.email} user_id={props.user_id}
     updateList = {props.updateList} DeleteMessage = {DeleteMessage} isResponding = {isResponding}
     setIsResponding = {setIsResponding} handleSend = {handleSend} handleCancel = {handleCancel}
-    smoothToBottom = {smoothToBottom}
   />
 </div>}
     </div>)
